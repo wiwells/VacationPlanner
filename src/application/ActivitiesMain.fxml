@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="750.0" maxWidth="750.0" minHeight="750.0" minWidth="750.0" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivitiesController">
+   <children>
+      <Text layoutX="23.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a category " wrappingWidth="231.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="environment1" fitHeight="290.0" fitWidth="324.0" layoutX="405.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@vector-indoor-location-background.jpg" />
+         </image>
+      </ImageView>
+      <ComboBox fx:id="environment_select" layoutX="23.0" layoutY="64.0" onAction="#update" prefHeight="25.0" prefWidth="150.0" />
+      <Label fx:id="comment1" layoutX="10.0" layoutY="121.0" prefHeight="73.0" prefWidth="256.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="homebtn" layoutX="23.0" layoutY="601.0" mnemonicParsing="false" onAction="#home" prefHeight="67.0" prefWidth="150.0" style="-fx-background-color: orange;" text="Home">
+         <font>
+            <Font name="Bodoni MT Black" size="30.0" />
+         </font></Button>
+      <Button fx:id="savbtn" layoutX="567.0" layoutY="601.0" mnemonicParsing="false" onAction="#save" prefHeight="67.0" prefWidth="150.0" style="-fx-background-color: yellow;" text="Save" textFill="#0a0909">
+         <font>
+            <Font name="Bodoni MT Black" size="32.0" />
+         </font></Button>
+      <Text layoutX="26.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select or Enter Custom Activity" wrappingWidth="401.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <TextArea layoutX="23.0" layoutY="464.0" prefHeight="25.0" prefWidth="150.0" />
+      <ComboBox fx:id="activity_select" layoutX="23.0" layoutY="326.0" prefWidth="150.0" promptText="sports" />
+      <ComboBox layoutX="250.0" layoutY="326.0" prefWidth="150.0" promptText="dining" />
+      <ComboBox layoutX="250.0" layoutY="394.0" prefWidth="150.0" promptText="relaxation" />
+      <ComboBox layoutX="23.0" layoutY="394.0" prefWidth="150.0" promptText="sight seeing" />
+      <Label layoutX="23.0" layoutY="443.0" prefHeight="21.0" prefWidth="150.0" text="Custom">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="add4" layoutX="413.0" layoutY="394.0" mnemonicParsing="false" onAction="#save" text="Add" />
+      <Button fx:id="add2" layoutX="413.0" layoutY="326.0" mnemonicParsing="false" onAction="#save" text="Add" />
+      <Button fx:id="add3" layoutX="188.0" layoutY="394.0" mnemonicParsing="false" onAction="#save" text="Add" />
+      <Button fx:id="add1" layoutX="188.0" layoutY="326.0" mnemonicParsing="false" onAction="#save" text="Add" />
+      <Button fx:id="add5" layoutX="183.0" layoutY="464.0" mnemonicParsing="false" onAction="#save" text="Add" />
+   </children>
+</AnchorPane>

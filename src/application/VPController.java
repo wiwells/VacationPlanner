@@ -24,16 +24,16 @@ public class VPController {
 
     @FXML
     void location(ActionEvent event) {
-
+    	
     }
 
     @FXML
     void checklist(ActionEvent event) {
-
+    	
     }
 
     @FXML
     void activities(ActionEvent event) {
-
+    	
     }
 }

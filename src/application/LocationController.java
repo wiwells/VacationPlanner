@@ -116,7 +116,11 @@ public class LocationController implements Initializable {
      	   ArrayList<String> arrlist = new ArrayList<String>();
      	   String value = "";
      	   String value1 = "";
-     	   String usr = user.getText();
+     	   String combined = "";
+     	   String combined1 = "";
+     	   String usr = user.getText().trim();
+     	   String usr1 = user1.getText().trim();
+     	  FileInputStream input = new FileInputStream(file);
      	   if(country.getValue().toString()!= " ") {
      		   value= country.getValue().toString();
      	   }
@@ -124,15 +128,9 @@ public class LocationController implements Initializable {
      	   if(city.getValue().toString()!= " ") {
      		   value1= city.getValue().toString();
      	   }
-     	// value= country.getValue().toString();
-     	 String usr1 = user1.getText().trim();
-     	// value1= city.getValue().toString();
+     	 
      	  
-     	   //Scanner s = new Scanner(file);
-     	   FileInputStream input = new FileInputStream(file);
-            
-            //FileWriter fileWriter = new FileWriter(file, true);
-            //BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+     	  
             
             try {
      			BufferedReader bufReader = new BufferedReader(new InputStreamReader(input));
@@ -143,43 +141,22 @@ public class LocationController implements Initializable {
      				
      			}
      			bufReader.close();
-     			
-     			if(arrlist.contains(value) && value == "Select a country")
+     			combined = usr+","+usr1;
+     			combined1 = value+","+value1;
+     			if(arrlist.contains(combined))
      			{
-     				arrlist.remove(value);
-     				//fileWriter.write(value+",");
+     				arrlist.remove(combined);
      			}
-     			System.out.println(arrlist);
-     			System.out.println(usr);
-     			
-     				if(!usr.equals("")) {
-     					arrlist.remove(usr);
-     					//fileWriter.write(usr+",");
-     				}
-     				
-     				System.out.println(arrlist);
-     			
-     			
-     			
-     			if(arrlist.contains(value1) && value1 == "Select a city")
+     			if(arrlist.contains(combined1))
      			{
-     				arrlist.remove(value1);
-     				//fileWriter.write(value1+"\n");
+     				arrlist.remove(combined1);
      			}
-     			if(arrlist.contains(usr1) && !usr1.equals(""))
-     			{
-     				if(!usr1.equals(""))
-     				{
-     					arrlist.remove(usr1);
-     					//fileWriter.write(usr1+"\n");
-     				}
-     				
-     				
      			
-     			
-     			}
-     			System.out.println(arrlist);
-     			//fileWriter.close();
+     			FileWriter writer = new FileWriter(file);
+                for (String str: arrlist) {
+                    writer.write(str + System.lineSeparator());
+                }
+                writer.close();
             }catch (IOException e) {
      			e.printStackTrace();
      		}
@@ -235,16 +212,10 @@ public void add() throws IOException
 	   if(city.getValue().toString()!= " ") {
 		   value1= city.getValue().toString();
 	   }
-	// value= country.getValue().toString();
 	 String usr1 = user1.getText().trim();
-	// value1= city.getValue().toString();
-	  
-	   //Scanner s = new Scanner(file);
 	   FileInputStream input = new FileInputStream(file);
        
        FileWriter fileWriter = new FileWriter(file, true);
-       //BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-       
        try {
 			BufferedReader bufReader = new BufferedReader(new InputStreamReader(input));
 			String line = bufReader.readLine();

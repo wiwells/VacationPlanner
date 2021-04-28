@@ -24,12 +24,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -38,11 +36,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -52,32 +46,37 @@ private ComboBox<String> activitySelect;
 @FXML
 private ComboBox<String> categorySelect;
 @FXML
-private Label comment;
+private ComboBox<String> activityRemove;
+
 @FXML
-private Button homebtn;
-@FXML
-/*to enter custom activity*/
 private TextArea customAct;
 @FXML
-/*to list activities user entered*/
+private Text actTitle;
+@FXML
+private Label delMsg;
+@FXML
+private Label addMsg;
+@FXML
+private Label comment;
+
+@FXML
 private ListView<String> activityList;
 @FXML
 private ImageView parrot;
 @FXML
 private ImageView categoryImg;
 @FXML
-/*to add selected activity*/
+private ImageView textBubble;
+
+@FXML
 private Button add;
 @FXML
-/*to add custom activity*/
+private Button remove;
+@FXML
 private Button clear;
 @FXML
-/*updates listview*/
-private Button savbtn;
-@FXML
-private Text actTitle;
-@FXML
-private Ellipse textBubble;
+private Button homebtn;
+
 
 /*Image files and corresponding images*/
 Image diningImg = new Image(new File("src/application/city.jpg").toURI().toString());
@@ -86,23 +85,57 @@ Image sportImg = new Image(new File("src/application/resort.jpg").toURI().toStri
 Image relaxImg = new Image(new File("src/application/camp.jpg").toURI().toString());
 Image parrotImg = new Image(new File("src/application/parrot.png").toURI().toString());
 
-
-/*categories for activities*/
 ObservableList<String> categories = 
-FXCollections.observableArrayList("dining","sightsee","sports","relax","other");
+FXCollections.observableArrayList("dining",
+		"sightsee",
+		"sports",
+		"relax",
+		"other"
+		);
 ObservableList<String> dining= 
-FXCollections.observableArrayList("bowling","skateboarding","basketball","try street food");
+FXCollections.observableArrayList("bowling",
+		"skateboarding",
+		"basketball",
+		"try street food"
+		);
 ObservableList<String> sightSeeing = 
-FXCollections.observableArrayList("volleyball","surfing","jet skiing");
+FXCollections.observableArrayList("volleyball",
+		"surfing",
+		"jet skiing"
+		);
 ObservableList<String> sports = 
-FXCollections.observableArrayList("fishing","cannoing","hiking");
+FXCollections.observableArrayList("fishing",
+		"canoeing",
+		"hiking"
+		);
 ObservableList<String> relax = 
-FXCollections.observableArrayList("table tennis","minigolf","shuffle boarding");
+FXCollections.observableArrayList("table tennis",
+		"minigolf",
+		"shuffle boarding"
+		);
 ObservableList<String> allAct= 
-FXCollections.observableArrayList("bowling","skateboarding","basketball","try street food","volleyball","surfing","jet skiing","fishing","cannoing","hiking","table tennis","minigolf","shuffle boarding","golfing","archery","frisbee");
+FXCollections.observableArrayList(
+		"bowling",
+		"skateboarding",
+		"basketball",
+		"try street food",
+		"volleyball",
+		"surfing",
+		"jet skiing",
+		"fishing",
+		"cannoing",
+		"hiking",
+		"table tennis",
+		"minigolf",
+		"shuffle boarding",
+		"golfing",
+		"archery",
+		"frisbee"
+		);
 
 
 /*initialize values of drop down menus*/
+@SuppressWarnings("unchecked")
 public void initialize(URL url, ResourceBundle rb) {
 	ArrayList<String> arrlist2 = new ArrayList<String>();
 	parrot.setImage(parrotImg);
@@ -110,7 +143,9 @@ public void initialize(URL url, ResourceBundle rb) {
 	customAct.setVisible(false);
     categorySelect.setValue("Select a Category");
     activitySelect.setValue("Select an Activity");
-    	categorySelect.setItems(categories);
+    activityRemove.setValue("Select an Activity");
+    categorySelect.setItems(categories);
+    
     	try {
             FileInputStream input = new FileInputStream("src/application/ActivityList.txt");
             BufferedReader bufReader = new BufferedReader(new InputStreamReader(input));
@@ -121,7 +156,6 @@ public void initialize(URL url, ResourceBundle rb) {
                 line = bufReader.readLine();
 
             }
-            System.out.println(arrlist2);
             bufReader.close();
             int arrarySize = arrlist2.size();
             for (int i = 0; i < arrarySize; i++) {
@@ -132,6 +166,9 @@ public void initialize(URL url, ResourceBundle rb) {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    	//activityRemove.setItems((ObservableList<String>) arrlist2);
+    	ObservableList<String> fullList = FXCollections.observableList(arrlist2);
+    	activityRemove.setItems(fullList);
     	
     }
 @FXML
@@ -139,7 +176,8 @@ public String update()
 {
 	categoryImg.setFitHeight(347);
 	categoryImg.setFitWidth(313);
-	
+	delMsg.setText("");
+	addMsg.setText("");
 	if(categorySelect.getValue()=="dining"){
 	      comment.setText("Good I'm starving");
 	      textBubble.setVisible(true);
@@ -161,7 +199,7 @@ public String update()
 	      customAct.setVisible(false);
 	}
 	if(categorySelect.getValue()=="sports"){
-	      comment.setText("Gotta stretch out these old feathers");
+	      comment.setText("Gotta stretch out these\n old feathers");
 	      textBubble.setVisible(true);
 	      actTitle.setText("Select an Activity");
 	      categoryImg.setImage(sportImg);
@@ -171,7 +209,7 @@ public String update()
 	      customAct.setVisible(false);
 	}
 	if(categorySelect.getValue()=="relax"){
-	      comment.setText("Nothing wrong with a little you time");
+	      comment.setText("Let's take squak");
 	      textBubble.setVisible(true);
 	      actTitle.setText("Select an Activity");
 	      categoryImg.setImage(relaxImg);
@@ -188,11 +226,11 @@ public String update()
 	      categoryImg.setVisible(false);
 	      activitySelect.setVisible(false);
 	      customAct.setVisible(true);
+	      activitySelect.setValue("Select an Activity");
 	}
 	
 	return categorySelect.getValue().toString();
 }
-@SuppressWarnings("resource")
 @FXML
 public void save() throws IOException
 {
@@ -206,19 +244,10 @@ public void save() throws IOException
 	   String value;
 	   String customVal = customAct.getText().trim();
 	   value= activitySelect.getValue().toString();
-	   Scanner s = new Scanner(file);
 	   FileInputStream input = new FileInputStream(file);
        
        FileWriter fileWriter = new FileWriter(file, true);
-       BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-       if(value != "Select an Activity"&&!customVal.equals(""))
-       {
-    	   a.setContentText("Please add one activity at a time");
-    	   activitySelect.setValue("Select an Activity");
-    	   customAct.clear();
-    	   a.show();
-    	   return;
-       }
+       delMsg.setText("");
        try {
 			BufferedReader bufReader = new BufferedReader(new InputStreamReader(input));
 			String line = bufReader.readLine();
@@ -237,6 +266,7 @@ public void save() throws IOException
 				if(value != "Select an Activity" && value != " "&&!activityList.getItems().contains(value))
 			   	{
 			   		activityList.getItems().add(value);
+			   		addMsg.setText("added \""+value+"\" to list");
 			   	}
 				}
 			}
@@ -244,6 +274,7 @@ public void save() throws IOException
 			{
 				a.setContentText("You already added this to your activity list");
 				a.show();
+				addMsg.setText("");
 			}
 			if(!arrlist.contains(customVal))
 			{
@@ -255,6 +286,7 @@ public void save() throws IOException
 					if(value != " "&&!activityList.getItems().contains(customVal))
 				   	{
 				   		activityList.getItems().add(customVal);
+				   		addMsg.setText("added \""+customVal+"\" to list");
 				   	}
 				}
 			}
@@ -262,19 +294,66 @@ public void save() throws IOException
 			{
 				a.setContentText("You already added this to your activity list");
 				a.show();
+				addMsg.setText("");
 			}
 			fileWriter.close();
 			activitySelect.setValue("Select an Activity");
 			customAct.clear();
+			ObservableList<String> fullList = FXCollections.observableList(arrlist);
+	    	activityRemove.setItems(fullList);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}	
+}
+@FXML
+void remove(ActionEvent event) throws IOException
+{
+	Alert a = new Alert(AlertType.NONE);
+    a.setAlertType(AlertType.ERROR);
+    a.setTitle("Activity Exist");
+    
      
-   	
+	   File file = new File("src/application/ActivityList.txt");
+	   ArrayList<String> arrlist = new ArrayList<String>();
+	   String value = "";
+	   value= activityRemove.getValue().toString();
+	   FileInputStream input = new FileInputStream(file);
+	   try {
+			BufferedReader bufReader = new BufferedReader(new InputStreamReader(input));
+			String line = bufReader.readLine();
+			while (line != null) {
+				arrlist.add(line);
+				line = bufReader.readLine();
+				
+			}
+			bufReader.close();
+			if(arrlist.contains(value))
+			{
+				if(value != "Select an Activity")
+				{
+				arrlist.remove(value);
+				//fileWriter.write(value+"\n");
+				if(value != "Select an Activity" && value != " "&&activityList.getItems().contains(value))
+			   	{
+			   		activityList.getItems().remove(value);
+			   		delMsg.setText("removed \""+value+"\" from list");
+			   		addMsg.setText("");
+			   	}
+				}
+			}
+			FileWriter writer = new FileWriter(file); 
+			for(String str: arrlist) {
+			  writer.write(str + System.lineSeparator());
+			}
+			writer.close();
+			ObservableList<String> fullList = FXCollections.observableList(arrlist);
+	    	activityRemove.setItems(fullList);
+	   } catch (IOException e) {
+			e.printStackTrace();
+		}
 	
 }
 
-/*ACTION EVENTS*/
 @FXML
 void home(ActionEvent event) {
     try {
@@ -299,6 +378,8 @@ void home(ActionEvent event) {
 void clear(ActionEvent event) throws IOException {
 	activitySelect.setValue("Select an Activity");
 	customAct.clear();
+	addMsg.setText("");
+	delMsg.setText("");
 }
 
 

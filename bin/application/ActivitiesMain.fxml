@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="750.0" maxWidth="750.0" minHeight="750.0" minWidth="750.0" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: FFDEC3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivitiesController">
+   <children>
+      <ImageView fx:id="categoryImg" fitHeight="347.0" fitWidth="313.0" layoutX="387.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d1e5f8" height="52.0" layoutX="387.0" layoutY="220.0" stroke="BLACK" strokeType="INSIDE" width="313.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8cff2100" height="188.0" layoutX="387.0" layoutY="277.0" stroke="BLACK" strokeType="INSIDE" width="313.0" />
+      <ImageView fx:id="parrot" fitHeight="150.0" fitWidth="200.0" layoutX="568.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@parrot.png" />
+         </image>
+         </ImageView>
+      <Text layoutX="23.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a category " wrappingWidth="231.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="categorySelect" layoutX="23.0" layoutY="64.0" onAction="#update" prefHeight="25.0" prefWidth="150.0" promptText="Select a category" style="-fx-background-color: #7FB7BE;">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor></ComboBox>
+      <Ellipse fx:id="textBubble" fill="#ffffff52" layoutX="446.0" layoutY="69.0" radiusX="108.0" radiusY="60.0" stroke="#7fb7be" strokeType="INSIDE" strokeWidth="3.0" />
+      <Label fx:id="comment" layoutX="362.0" layoutY="-15.0" prefHeight="127.0" prefWidth="168.0" text="sample sentence">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="homebtn" layoutX="30.0" layoutY="653.0" mnemonicParsing="false" onAction="#home" prefHeight="67.0" prefWidth="150.0" style="-fx-background-color: F1C8DB;" text="Home">
+         <font>
+            <Font name="Bodoni MT Black" size="30.0" />
+         </font></Button>
+      <Text fx:id="actTitle" layoutX="23.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Activity" wrappingWidth="193.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <TextArea fx:id="customAct" layoutX="23.0" layoutY="159.0" prefHeight="67.0" prefWidth="150.0" promptText="enter here">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextArea>
+      <ComboBox fx:id="activitySelect" layoutX="23.0" layoutY="156.0" prefWidth="150.0" promptText="Select an Activity" style="-fx-background-color: #7FB7BE;">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor></ComboBox>
+      <Button fx:id="add" layoutX="197.0" layoutY="156.0" mnemonicParsing="false" onAction="#save" style="-fx-background-color: F7AFBA;" text="Add">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="clear" layoutX="195.0" layoutY="200.0" mnemonicParsing="false" onAction="#clear" style="-fx-background-color: F7AFBA;" text="Clear">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ListView fx:id="activityList" layoutX="402.0" layoutY="291.0" prefHeight="160.0" prefWidth="268.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></ListView>
+      <Label layoutX="471.0" layoutY="225.0" text="Activity List">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

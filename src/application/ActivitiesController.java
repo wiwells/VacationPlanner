@@ -217,9 +217,6 @@ void home(ActionEvent event) {
     } catch (Exception e) {
         e.printStackTrace();
     }
-
-
-
 }
 
 

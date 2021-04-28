@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -20,7 +21,10 @@
             <Image url="@vector-indoor-location-background.jpg" />
          </image>
       </ImageView>
-      <ComboBox fx:id="environment_select" layoutX="23.0" layoutY="64.0" onAction="#update" prefHeight="25.0" prefWidth="150.0" />
+      <ComboBox fx:id="environment_select" layoutX="23.0" layoutY="64.0" onAction="#update" prefHeight="25.0" prefWidth="150.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
       <Label fx:id="comment1" layoutX="10.0" layoutY="121.0" prefHeight="73.0" prefWidth="256.0">
          <font>
             <Font size="15.0" />
@@ -55,4 +59,7 @@
       <Button fx:id="add1" layoutX="188.0" layoutY="326.0" mnemonicParsing="false" onAction="#save" text="Add" />
       <Button fx:id="add5" layoutX="183.0" layoutY="464.0" mnemonicParsing="false" onAction="#save" text="Add" />
    </children>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
 </AnchorPane>

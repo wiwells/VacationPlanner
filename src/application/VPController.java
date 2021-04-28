@@ -10,6 +10,7 @@
 
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -48,8 +49,13 @@ public class VPController {
     }
 
     @FXML
-    void checklist(ActionEvent event) {
-
+    void checklist(ActionEvent event) throws IOException {
+    	AnchorPane root = FXMLLoader.load(getClass().getResource("Checklist.fxml"));
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		window.setScene(scene);
+		window.show();
     }
 
     @FXML

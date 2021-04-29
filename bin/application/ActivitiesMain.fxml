@@ -76,23 +76,23 @@
             <Font name="Bodoni MT Black" size="29.0" />
          </font>
       </Label>
-      <ComboBox fx:id="activityRemove" layoutX="23.0" layoutY="429.0" prefWidth="150.0" promptText="Select an Activity" style="-fx-background-color: #9CC0E7;">
+      <ComboBox fx:id="activityRemove" layoutX="23.0" layoutY="454.0" prefWidth="150.0" promptText="Select an Activity" style="-fx-background-color: #9CC0E7;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ComboBox>
-      <Text fx:id="actTitle1" layoutX="23.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remove Activity" wrappingWidth="193.0">
+      <Text fx:id="actTitle1" layoutX="23.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remove Activity" wrappingWidth="193.0">
          <font>
             <Font name="Bodoni MT" size="20.0" />
          </font>
       </Text>
-      <Button fx:id="remove" layoutX="187.0" layoutY="429.0" mnemonicParsing="false" onAction="#remove" style="-fx-background-color: FEDE3A;" text="Remove">
+      <Button fx:id="remove" layoutX="187.0" layoutY="454.0" mnemonicParsing="false" onAction="#remove" style="-fx-background-color: FEDE3A;" text="Remove">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
       <Label fx:id="addMsg" layoutX="23.0" layoutY="174.0" prefHeight="25.0" prefWidth="231.0" />
-      <Label fx:id="delMsg" layoutX="27.0" layoutY="462.0" prefHeight="25.0" prefWidth="206.0" />
-      <Label fx:id="source" layoutX="23.0" layoutY="568.0" prefHeight="17.0" prefWidth="254.0">
+      <Label fx:id="delMsg" layoutX="28.0" layoutY="491.0" prefHeight="25.0" prefWidth="206.0" />
+      <Label fx:id="source" layoutX="21.0" layoutY="375.0" prefHeight="17.0" prefWidth="254.0">
          <font>
             <Font size="8.0" />
          </font>

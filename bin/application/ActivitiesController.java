@@ -32,14 +32,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ActivitiesController implements Initializable {
-	
+
     @FXML
     private ComboBox < String > activitySelect;
     @FXML
     private ComboBox < String > categorySelect;
     @FXML
     private ComboBox < String > activityRemove;
-    
+
     @FXML
     private TextArea customAct;
     @FXML
@@ -52,7 +52,7 @@ public class ActivitiesController implements Initializable {
     private Label comment;
     @FXML
     private Label source;
-    
+
     @FXML
     private ListView < String > activityList;
     @FXML
@@ -65,7 +65,7 @@ public class ActivitiesController implements Initializable {
     private Rectangle border;
     @FXML
     private Rectangle imgBorder;
-    
+
     @FXML
     private Button add;
     @FXML
@@ -82,46 +82,39 @@ public class ActivitiesController implements Initializable {
     Image sportImg = new Image(new File("src/application/skiing.jpg").toURI().toString());
     Image relaxImg = new Image(new File("src/application/relax.jpg").toURI().toString());
     Image parrotImg = new Image(new File("src/application/parrot.png").toURI().toString());
-    
+    Image planImg = new Image(new File("src/application/schedule.jpg").toURI().toString());
+
     //observable list for categories and activities
-    ObservableList < String > categories =
-        FXCollections.observableArrayList(
-        		"dining","sightsee",
-        		"sports","relax","other"
-        );
-    ObservableList < String > dining =
-            FXCollections.observableArrayList(
-                "visit cafe","try street food",
-                "go to buffet","eat at resturant"
-            );
-    ObservableList < String > sightSeeing =
-        FXCollections.observableArrayList(
-            "whale watching","bird watching",
-            "nature walk","walk through city"
-            );
-    ObservableList < String > sports =
-        FXCollections.observableArrayList(
-            "volleyball","minigolf",
-            "skiing","canoeing"
-            );
+    ObservableList < String > categories = FXCollections.observableArrayList(
+        "dining", "sightsee", "sports", "relax", "all","other"
+    );
+    ObservableList < String > dining = FXCollections.observableArrayList(
+        "visit cafe", "try street food",
+        "go to buffet", "eat at resturant"
+    );
+    ObservableList < String > sightSeeing = FXCollections.observableArrayList(
+        "whale watching", "bird watching",
+        "nature walk", "walk through city"
+    );
+    ObservableList < String > sports = FXCollections.observableArrayList(
+        "volleyball", "minigolf",
+        "skiing", "canoeing"
+    );
     ObservableList < String > relax =
         FXCollections.observableArrayList(
-            "get a massage","do some yoga",
-            "go sunbathing","go for a dip"
-            );
-    ObservableList < String > all =
-        FXCollections.observableArrayList(
-        	"visit cafe", "try street food",
-            "go to buffet","eat at resturant",
-            "whale watching","bird watching",
-            "nature walk","walk through city",
-            "volleyball","minigolf",
-            "skiing","canoeing",
-            "get a massage","do some yoga",
-            "go sunbathing","go for a dip"
-            );
-
-
+            "get a massage", "do some yoga",
+            "go sunbathing", "go for a dip"
+        );
+    ObservableList < String > all = FXCollections.observableArrayList(
+        "visit cafe", "try street food",
+        "go to buffet", "eat at resturant",
+        "whale watching", "bird watching",
+        "nature walk", "walk through city",
+        "volleyball", "minigolf",
+        "skiing", "canoeing",
+        "get a massage", "do some yoga",
+        "go sunbathing", "go for a dip"
+    );
 
     /*Name of Function: initialize;
      * 
@@ -141,27 +134,27 @@ public class ActivitiesController implements Initializable {
      * 
      */
     public void initialize(URL url, ResourceBundle rb) {
-    	//activities array list
         ArrayList < String > arrlist = readTextFile();
-        imgBorder.setVisible(false);
+        ObservableList < String > fullList = FXCollections.observableList(arrlist);
+        int arrarySize = arrlist.size();
+        for (int i = 0; i < arrarySize; i++) {
+            activityList.getItems().add(arrlist.get(i));
+        }
+       //set all current items into combo box
+        setImageAndComment(categorySelect.getValue());
         textBubble.setVisible(false);
         customAct.setVisible(false);
-        parrot.setImage(parrotImg);
+        //set values
         categorySelect.setValue("Select a Category");
         activitySelect.setValue("Select an Activity");
         activityRemove.setValue("Select an Activity");
+        //set items
         categorySelect.setItems(categories);
         activitySelect.setItems(all);
-            int arrarySize = arrlist.size();
-            for (int i = 0; i < arrarySize; i++) {
-                activityList.getItems().add(arrlist.get(i));
-            }
-        //set all current items into combo box
-        ObservableList < String > fullList = FXCollections.observableList(arrlist);
         activityRemove.setItems(fullList);
 
     }
-
+    
     /*Name of Function: add;
      * 
      * Attached to: @add button
@@ -176,74 +169,67 @@ public class ActivitiesController implements Initializable {
      */
     @FXML
     public void add() throws IOException {
-        
+
         File file = new File("src/application/ActivityList.txt");
         FileWriter fileWriter = new FileWriter(file, true);
         ArrayList < String > arrlist = readTextFile();
         String value = "";
-        if(activitySelect.getValue() != null)
-        {
-        value = activitySelect.getValue().toString();
+        if (activitySelect.getValue() != null) {
+            value = activitySelect.getValue().toString();
         }
         String customVal = customAct.getText().trim();
         Alert a = new Alert(AlertType.NONE);
         a.setAlertType(AlertType.ERROR);
         a.setTitle("Activity Exist");
         delMsg.setText("");
-        
+
         //base case
-        if(customAct.isVisible()==false)
-        {
-        	if(checkListforItem(arrlist,value) == true&&value != ""&&value != "Select an Activity")
-        	{
-        		a.setContentText("You already added \"" + value + "\" to your activity list");
-            	a.show();
-            	addMsg.setText("");
-        	}
+        if (customAct.isVisible() == false) {
+            if (checkListforItem(arrlist, value) == true && value != "" && value != "Select an Activity") {
+                a.setContentText("You already added \"" + value + "\" to your activity list");
+                a.show();
+                addMsg.setText("");
+            }
         }
-        if(activitySelect.isVisible()==false)
-        {
-        	if(checkListforItem(arrlist,customVal) == true&&customVal != ""&&customVal != " "&&customVal != "\n"&&customAct.getText().trim().length() != 0)
-        	{
-        		a.setContentText("You already added \"" + customVal + "\" to your activity list");
-            	a.show();
-            	addMsg.setText("");
-        	}
+        if (activitySelect.isVisible() == false) {
+            if (checkListforItem(arrlist, customVal) == true && customVal != "" && customVal != " " && customVal != "\n" && customAct.getText().trim().length() != 0) {
+                a.setContentText("You already added \"" + customVal + "\" to your activity list");
+                a.show();
+                addMsg.setText("");
+            }
         }
         //add value to file and listview
-        if(checkListforItem(arrlist,value) == false&&customAct.isVisible()==false)
-        {
-        		fileWriter.write(value + "\n");
-        	    arrlist.add(value);
-                activityList.getItems().add(value);
-                addMsg.setText("added \"" + value + "\" to list");
-        	
+        if (checkListforItem(arrlist, value) == false && customAct.isVisible() == false) {
+            fileWriter.write(value + "\n");
+            arrlist.add(value);
+            activityList.getItems().add(value);
+            addMsg.setText("added \"" + value + "\" to list");
+
         }
         //add customVal to file and listview
-        if(checkListforItem(arrlist,customVal) == false && activitySelect.isVisible()==false)
-        {
-        	arrlist.add(customVal);
-        	fileWriter.write(customVal + "\n");
-        	activityList.getItems().add(customVal);
+        if (checkListforItem(arrlist, customVal) == false && activitySelect.isVisible() == false) {
+            arrlist.add(customVal);
+            fileWriter.write(customVal + "\n");
+            activityList.getItems().add(customVal);
             addMsg.setText("added \"" + customVal + "\" to list");
         }
-            fileWriter.close();
-            activitySelect.setValue("Select an Activity");
-            customAct.clear();
-            ObservableList < String > fullList = FXCollections.observableList(arrlist);
-            activityRemove.setItems(fullList);
+        fileWriter.close();
+        activitySelect.setValue("Select an Activity");
+        customAct.clear();
+        ObservableList < String > fullList = FXCollections.observableList(arrlist);
+        activityRemove.setItems(fullList);
     }
-    public boolean checkListforItem(ArrayList<String> arrlist,String value) throws IOException {
-    	 Alert a = new Alert(AlertType.NONE);
-         a.setAlertType(AlertType.ERROR);
-         a.setTitle("Activity Exist");
-    	if (!arrlist.contains(value)) {
-            if (value != "Select an Activity"&&!value.equals("")) {
+    public boolean checkListforItem(ArrayList < String > arrlist, String value) throws IOException {
+        Alert a = new Alert(AlertType.NONE);
+        a.setAlertType(AlertType.ERROR);
+        a.setTitle("Activity Exist");
+        if (!arrlist.contains(value)) {
+            if (value != "Select an Activity" && !value.equals("")) {
                 return false;
             }
-            
+
         }
-    	return true;
+        return true;
     }
     /*Name of Function: remove;
      * 
@@ -263,12 +249,11 @@ public class ActivitiesController implements Initializable {
         ArrayList < String > arrlist = readTextFile();
         String value = "";
         value = activityRemove.getValue().toString();
-        if(checkListforItem(arrlist,value) == true&&value != "Select an Activity")
-        {
-        	arrlist.remove(value);
-        	activityList.getItems().remove(value);
-        	activityRemove.getItems().remove(value);
-        	delMsg.setText("removed \"" + value + "\" from list");
+        if (checkListforItem(arrlist, value) == true && value != "Select an Activity") {
+            arrlist.remove(value);
+            activityList.getItems().remove(value);
+            activityRemove.getItems().remove(value);
+            delMsg.setText("removed \"" + value + "\" from list");
             addMsg.setText("");
         }
         FileWriter writer = new FileWriter(file);
@@ -280,11 +265,10 @@ public class ActivitiesController implements Initializable {
         activityRemove.setValue("Select an Activity");
 
     }
-    
-    public ArrayList<String> readTextFile()
-    {
-    	ArrayList < String > arrlist = new ArrayList < String > ();
-    	try {
+    //read text file
+    public ArrayList < String > readTextFile() {
+        ArrayList < String > arrlist = new ArrayList < String > ();
+        try {
             FileInputStream input = new FileInputStream("src/application/ActivityList.txt");
             BufferedReader bufReader = new BufferedReader(new InputStreamReader(input));
             String line = bufReader.readLine();
@@ -293,13 +277,29 @@ public class ActivitiesController implements Initializable {
                 line = bufReader.readLine();
             }
             bufReader.close();
-    		}
-    	 catch (IOException e) {
-             e.printStackTrace();
-         }
-    	return arrlist;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return arrlist;
     }
-    
+    //update the scene
+    @FXML
+    public void updateUI() {
+        setActivities(categorySelect.getValue());
+        setImageAndComment(categorySelect.getValue());
+        delMsg.setText("");
+        addMsg.setText("");
+    }
+    //clear and/or reset fields
+    @FXML
+    void clearFields(ActionEvent event) throws IOException {
+        activitySelect.setValue("Select an Activity");
+        activityRemove.setValue("Select an Activity");
+        customAct.clear();
+        addMsg.setText("");
+        delMsg.setText("");
+    }
+    //return to VPMain.fxml
     @FXML
     void returnToMain(ActionEvent event) {
         try {
@@ -317,63 +317,67 @@ public class ActivitiesController implements Initializable {
             e.printStackTrace();
         }
     }
-    
-    @FXML
-    public void updateUI() {
-        delMsg.setText("");
-        addMsg.setText("");
-        if (categorySelect.getValue() == "dining") {
+    //set images depending on category
+    public void setImageAndComment(String category)
+    {
+    	categoryImg.setFitHeight(200);
+        categoryImg.setFitWidth(200);
+        categoryImg.setImage(planImg);
+        parrot.setImage(parrotImg);
+        textBubble.setVisible(true);
+        source.setText("Photo by Eric Rothermel on Unsplash");
+        if (category == "dining") {
             comment.setText("Good. I'm starving");
             categoryImg.setImage(diningImg);
-            activitySelect.setItems(dining);
             source.setText("Photo by Pawel Wojciechowski on Unsplash");
         }
-        if (categorySelect.getValue() == "sightsee") {
-            comment.setText("Let's go bird watching :)");
-            categoryImg.setImage(sightImg);
-            activitySelect.setItems(sightSeeing);
-            source.setText("Photo by Adam Kool on Unsplash");
+        if (category == "sightsee") {
+        	comment.setText("Let's go bird watching :)");
+        	categoryImg.setImage(sightImg);
+        	source.setText("Photo by Adam Kool on Unsplash");
         }
-        if (categorySelect.getValue() == "sports") {
-            comment.setText("Gotta stretch out these\n old feathers");
-            categoryImg.setImage(sportImg);
-            activitySelect.setItems(sports);
-            source.setText("Photo by William Ling on Unsplash");
+        if (category == "sports") {
+        	comment.setText("Gotta stretch out these\n old feathers");
+        	categoryImg.setImage(sportImg);
+        	source.setText("Photo by William Ling on Unsplash");
         }
-        if (categorySelect.getValue() == "relax") {
-            comment.setText("Let's take squak");
+        if (category == "relax") {
+        	comment.setText("Let's take squak");
             categoryImg.setImage(relaxImg);
-            activitySelect.setItems(relax);
             source.setText("Photo by Aaron Burden on Unsplash");
         }
-        if (categorySelect.getValue() != "other"&&categorySelect.getValue() != "Select a Category") {
-            categoryImg.setFitHeight(200);
-            categoryImg.setFitWidth(200);
-        	imgBorder.setVisible(true);
-        	textBubble.setVisible(true);
-        	actTitle.setText("Select an Activity");
-        	categoryImg.setVisible(true);
-        	activitySelect.setVisible(true);
-        	customAct.setVisible(false);
+        if (category == "all") {
+        	comment.setText("Hmm can't decide?");
         }
-        else if (categorySelect.getValue() == "other") {
-            imgBorder.setVisible(false);
-            comment.setText("Oh do tell!");
-            textBubble.setVisible(true);
-            actTitle.setText("Enter an Activity");
-            categoryImg.setVisible(false);
-            activitySelect.setVisible(false);
-            customAct.setVisible(true);
-            activitySelect.setValue("Select an Activity");
-            source.setText(" ");
-        } 
+        if (category == "other") {
+        	comment.setText("Oh do tell!");
+        }
     }
-    @FXML
-    void clearFields(ActionEvent event) throws IOException {
-        activitySelect.setValue("Select an Activity");
-        activityRemove.setValue("Select an Activity");
-        customAct.clear();
-        addMsg.setText("");
-        delMsg.setText("");
+    //set activities depending on category
+    public void setActivities(String category)
+    {
+    	actTitle.setText("Select an Activity");
+    	activitySelect.setVisible(true);
+        customAct.setVisible(false);
+    	if (category == "dining") {
+    		activitySelect.setItems(dining);
+        }
+        if (category == "sightsee") {
+        	activitySelect.setItems(sightSeeing);
+        }
+        if (category == "sports") {
+        	activitySelect.setItems(sports);
+        }
+        if (category == "relax") {
+        	activitySelect.setItems(relax);
+        }
+        if (category == "all") {
+        	activitySelect.setItems(all);
+        }
+        if (category == "other") {
+        	actTitle.setText("Enter an Activity");
+        	activitySelect.setVisible(false);
+            customAct.setVisible(true);
+        }
     }
 }

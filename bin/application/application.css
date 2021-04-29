@@ -38,4 +38,7 @@
 #Abutton{
 	-fx-background-color:lightblue;
 }
-
+#location{
+	-fx-background-image:url("l.png");
+	-fx-background-size:100% 100%;
+}

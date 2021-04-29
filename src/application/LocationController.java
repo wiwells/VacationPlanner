@@ -29,6 +29,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ComboBoxBase;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -53,6 +54,8 @@ public class LocationController implements Initializable {
 	    private Button remove;
 	    @FXML
 	    private ImageView Imageview;
+	    @FXML
+	    private ListView < String > list;
 	Parent mainPane;
 	Image cityImg = new Image(new File("src/application/India.png").toURI().toString());
 	Image cityImg1 = new Image(new File("src/application/Africa.png").toURI().toString());
@@ -67,6 +70,7 @@ public class LocationController implements Initializable {
 	Image cityImg10 = new Image(new File("src/application/Portugal.png").toURI().toString());
 	Image cityImg11 = new Image(new File("src/application/UAE.png").toURI().toString());
 	Image cityImg12 = new Image(new File("src/application/NewZealand.png").toURI().toString());
+	Image def = new Image(new File("src/application/default.png").toURI().toString());
 	
     @FXML
     private Button goHomeButton;
@@ -74,16 +78,40 @@ public class LocationController implements Initializable {
     		FXCollections.observableArrayList("India","Africa","Britain","USA","Canada","Nepal","Australia","Germany","France","Spain","Portugal","UAE","NewZealand");
     ObservableList<String> cat = 
     		FXCollections.observableArrayList("Delhi","CapeTown","London","NewYork","Toronto","Kathmandu","Sydney","Berlin","Paris","Madrid","Lisbon","Dubai","Wellington");
+    
+    
     public void initialize(URL url, ResourceBundle rb) {
     	
+    	File file = new File("src/application/Location.txt");
+  	    ArrayList<String> arrlist = new ArrayList<String>();
+  	  Imageview.setImage(def);
     	  country.setItems(categories);
     	  city.setItems(cat);
     	  
-    	  city.setValue("Select a city");
-    	  country.setValue("Select a country");
-    	}
+    	  city.setValue("City");
+    	  country.setValue("Country");
+    	  
+    	  try {
+    		  FileInputStream input = new FileInputStream(file);
+   			BufferedReader bufReader = new BufferedReader(new InputStreamReader(input));
+   			String line = bufReader.readLine();
+   			while (line != null) {
+   				arrlist.add(line);
+   				line = bufReader.readLine();
+   				
+   				
+   			}													//list.getItems().add(value);
+   			bufReader.close();
+    	  int arrarySize = arrlist.size();
+          for (int i = 0; i < arrarySize; i++) {
+              list.getItems().add(arrlist.get(i));
+              
+          }
+    	}catch (IOException e) {
+ 			e.printStackTrace();
+    }
     
-    
+    }
     
     
     @FXML
@@ -100,12 +128,14 @@ public class LocationController implements Initializable {
         void clearAllField(ActionEvent event) {
     		user.clear();
     		user1.clear();
-    		country.setValue("Select a country");
-    		city.setValue("Select a city");
+    		country.setValue("Country");
+    		city.setValue("City");
     		
     		Imageview.setVisible(false);
-    		
+    		  Imageview.setImage(def);
+    		  Imageview.setVisible(true);
         }
+		
 
         
         @FXML
@@ -118,18 +148,22 @@ public class LocationController implements Initializable {
      	   String value1 = "";
      	   String combined = "";
      	   String combined1 = "";
+     	 
      	   String usr = user.getText().trim();
      	   String usr1 = user1.getText().trim();
      	  FileInputStream input = new FileInputStream(file);
+     	  
+     	 
      	   if(country.getValue().toString()!= " ") {
      		   value= country.getValue().toString();
      	   }
-     	   
+     	 
      	   if(city.getValue().toString()!= " ") {
      		   value1= city.getValue().toString();
      	   }
      	 
      	  
+			
      	  
             
             try {
@@ -143,14 +177,44 @@ public class LocationController implements Initializable {
      			bufReader.close();
      			combined = usr+","+usr1;
      			combined1 = value+","+value1;
+     			
+     			if(!arrlist.contains(combined) && !arrlist.contains(combined1))
+     			{
+     				Alert mainError = new Alert(AlertType.ERROR);
+            		mainError.setTitle("Error!!!");
+            		mainError.setHeaderText("Please enter the Country and City.");
+            		mainError.setContentText("Thank you!!...");
+            		mainError.showAndWait();
+            		
+            		
+     			}
+     			
+     			
      			if(arrlist.contains(combined))
      			{
      				arrlist.remove(combined);
+     				list.getItems().remove(combined);
      			}
+     			
+     			
+     			
      			if(arrlist.contains(combined1))
      			{
+     				Alert mainError = new Alert(AlertType.ERROR);
+            		mainError.setTitle("Heads Up!!!");
+            		mainError.setHeaderText("Are you sure you want to remove?");
+            		mainError.setContentText("You selected" + "--->"+ combined1);
+            		mainError.showAndWait();
      				arrlist.remove(combined1);
+     				list.getItems().remove(combined1);
+     				country.setValue("Country");
+     	    		city.setValue("City");
+     	    		Imageview.setImage(def);
+     				
      			}
+     			
+     			
+     			
      			
      			FileWriter writer = new FileWriter(file);
                 for (String str: arrlist) {
@@ -221,14 +285,18 @@ public void add() throws IOException
 			String line = bufReader.readLine();
 			while (line != null) {
 				arrlist.add(line);
+				
 				line = bufReader.readLine();
 				
 			}
 			bufReader.close();
+			String comb = usr+","+usr1;
+			String val = value+","+value1;
 			
-			if(!arrlist.contains(value) && value!= "Select a country")
+			if(!arrlist.contains(value) && value!= "Country")
 			{
 				arrlist.add(value);
+				list.getItems().add(val);
 				fileWriter.write(value+",");
 			}
 			if(!arrlist.contains(usr) && !usr.equals(""))
@@ -236,6 +304,7 @@ public void add() throws IOException
 				if(!usr.equals(""))
 				{
 					arrlist.add(usr);
+					list.getItems().add(comb);
 					fileWriter.write(usr+",");
 				}
 				
@@ -243,9 +312,10 @@ public void add() throws IOException
 			
 			
 			}
-			if(!arrlist.contains(value1) && value1!="Select a city")
+			if(!arrlist.contains(value1) && value1!="City")
 			{
 				arrlist.add(value1);
+				
 				fileWriter.write(value1+"\n");
 			}
 			if(!arrlist.contains(usr1) && !usr1.equals(""))
@@ -253,11 +323,20 @@ public void add() throws IOException
 				if(!usr1.equals(""))
 				{
 					arrlist.add(usr1);
+					
 					fileWriter.write(usr1+"\n");
 				}
 				
 				
-			
+				user.clear();
+	    		user1.clear();
+	    		country.setValue("Country");
+	    		city.setValue("City");
+	    		
+	    		Imageview.setVisible(false);
+	    		Imageview.setImage(def);
+	    		Imageview.setVisible(true);
+	    		
 			
 			}
 			

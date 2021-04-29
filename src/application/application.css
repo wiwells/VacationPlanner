@@ -39,7 +39,7 @@
 	-fx-background-color:lightblue;
 }
 /*images for activities panel*/
-#environment{
-	-fx-background-image:url("https://static.vecteezy.com/system/resources/previews/000/438/151/non_2x/indoor-location-background-vector.jpg");
+#activitiesBgImg{
+	-fx-background-image:url("https://wallpaperaccess.com/full/2312673.jpg");
 	-fx-background-size: 100% 100%;
 }

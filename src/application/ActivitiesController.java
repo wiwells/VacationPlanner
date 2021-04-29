@@ -65,6 +65,8 @@ public class ActivitiesController implements Initializable {
     private Rectangle border;
     @FXML
     private Rectangle imgBorder;
+    @FXML
+    private AnchorPane activitiesBgImg;
 
     @FXML
     private Button add;

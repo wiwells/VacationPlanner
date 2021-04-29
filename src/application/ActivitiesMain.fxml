@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="750.0" maxWidth="750.0" minHeight="750.0" minWidth="750.0" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: #C4C3D0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivitiesController">
+<AnchorPane fx:id="activitiesBgImg" maxHeight="750.0" maxWidth="750.0" minHeight="750.0" minWidth="750.0" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: #C4C3D0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivitiesController">
    <children>
       <Rectangle fx:id="border" arcHeight="5.0" arcWidth="5.0" fill="#555454" height="307.0" layoutX="361.0" layoutY="155.0" stroke="BLACK" strokeType="INSIDE" width="342.0" />
       <Rectangle fx:id="imgBorder" arcHeight="5.0" arcWidth="5.0" fill="#555454" height="164.0" layoutX="21.0" layoutY="209.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />

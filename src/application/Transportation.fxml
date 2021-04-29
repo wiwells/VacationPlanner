@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TransportationController">
+   <children>
+      <ImageView fitHeight="500.0" fitWidth="650.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Project%20Resources/transportation%20background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="353.0" fitWidth="349.0" layoutX="-18.0" layoutY="-144.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Project%20Resources/Transportation.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="costText" layoutX="14.0" layoutY="378.0" prefHeight="22.0" prefWidth="170.0" />
+      <Button fx:id="submit" layoutX="213.0" layoutY="116.0" mnemonicParsing="false" onAction="#submitButton" text="Submit" />
+      <Button fx:id="home" layoutX="483.0" layoutY="53.0" mnemonicParsing="false" onAction="#sendHome" prefHeight="49.0" prefWidth="72.0" text="Home" />
+      <Button fx:id="costname" layoutX="14.0" layoutY="309.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="170.0" text="Cost of Traveling?" />
+      <ListView fx:id="getTherelist" layoutX="14.0" layoutY="149.0" prefHeight="22.0" prefWidth="276.0" />
+      <ComboBox fx:id="meansofTravel" layoutX="14.0" layoutY="228.0" prefHeight="22.0" prefWidth="170.0" promptText="Select Transportation" />
+      <ComboBox fx:id="initialTravel" layoutX="14.0" layoutY="116.0" prefHeight="22.0" prefWidth="170.0" promptText="Select Transportation" />
+      <Text layoutX="14.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How will you travel to Destination">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Means of Transportation during Travel">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="submit2" layoutX="214.0" layoutY="228.0" mnemonicParsing="false" onAction="#submitButton2" text="Submit" />
+      <ListView fx:id="meansList" layoutX="14.0" layoutY="264.0" prefHeight="22.0" prefWidth="276.0" />
+      <ListView fx:id="moneyList" layoutX="14.0" layoutY="408.0" prefHeight="38.0" prefWidth="276.0" />
+      <Button fx:id="submit3" layoutX="214.0" layoutY="328.0" mnemonicParsing="false" onAction="#submitButton3" text="Submit" />
+      <Button fx:id="clearbutton" layoutX="483.0" layoutY="136.0" mnemonicParsing="false" onAction="#clearProcess" prefHeight="49.0" prefWidth="72.0" text="Clear" />
+      <ListView fx:id="infoView" layoutX="365.0" layoutY="239.0" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>

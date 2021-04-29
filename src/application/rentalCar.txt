@@ -1,7 +1,7 @@
 Rental Car Companies:
-1. Enterprise
-2. Alamo
-3. Budget
-4. Avis
-5. Hertz
-6. Thrifty
+1. Enterprise / 855-266-9565
+2. Alamo / 888-233-8749
+3. Budget / 800-214-6094
+4. Avis / 800-352-7900
+5. Hertz / 800-654-4173
+6. Thrifty / 800-334-1705

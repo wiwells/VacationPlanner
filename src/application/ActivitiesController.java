@@ -92,7 +92,7 @@ public class ActivitiesController implements Initializable {
     );
     ObservableList < String > dining = FXCollections.observableArrayList(
         "visit cafe", "try street food",
-        "go to buffet", "eat at resturant"
+        "go to buffet", "eat at restaurant"
     );
     ObservableList < String > sightSeeing = FXCollections.observableArrayList(
         "whale watching", "bird watching",
@@ -184,7 +184,6 @@ public class ActivitiesController implements Initializable {
         a.setAlertType(AlertType.ERROR);
         a.setTitle("Activity Exist");
         delMsg.setText("");
-
         //base case
         if (customAct.isVisible() == false) {
             if (checkListforItem(arrlist, value) == true && value != "" && value != "Select an Activity") {
@@ -202,7 +201,15 @@ public class ActivitiesController implements Initializable {
         }
         //add value to file and listview
         if (checkListforItem(arrlist, value) == false && customAct.isVisible() == false) {
-            fileWriter.write(value + "\n");
+        	if(file.length()==0)
+        	{
+        	  fileWriter.write(value);
+        	}
+        	else
+        	{
+
+             fileWriter.write("\n"+value);
+        	}
             arrlist.add(value);
             activityList.getItems().add(value);
             addMsg.setText("added \"" + value + "\" to list");
@@ -210,8 +217,16 @@ public class ActivitiesController implements Initializable {
         }
         //add customVal to file and listview
         if (checkListforItem(arrlist, customVal) == false && activitySelect.isVisible() == false) {
+        	if(file.length()==0)
+        	{
+        	  fileWriter.write(customVal);
+        	}
+        	else
+        	{
+
+             fileWriter.write("\n"+customVal);
+        	}
             arrlist.add(customVal);
-            fileWriter.write(customVal + "\n");
             activityList.getItems().add(customVal);
             addMsg.setText("added \"" + customVal + "\" to list");
         }
@@ -274,8 +289,11 @@ public class ActivitiesController implements Initializable {
             FileInputStream input = new FileInputStream("src/application/ActivityList.txt");
             BufferedReader bufReader = new BufferedReader(new InputStreamReader(input));
             String line = bufReader.readLine();
-            while (line != null) {
+            while (line != null&&line != " ") {
+            	if(!line.isEmpty())
+            	{
                 arrlist.add(line);
+            	}
                 line = bufReader.readLine();
             }
             bufReader.close();

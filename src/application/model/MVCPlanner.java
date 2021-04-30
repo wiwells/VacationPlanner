@@ -98,7 +98,7 @@ public class MVCPlanner {
      * This function will:
      * -read the text file containing the items added to the checklist
      * -should read both the item name and its value returning an arraylist
-     *with all values
+     *  with all values
      * 
      * 
      */
@@ -148,9 +148,9 @@ public class MVCPlanner {
 	/*Name of Function: addChecklistItem;
      * 
      * This function will:
-     * -check which items the user selects 
+     * -trigger if the user selects the add radiobutton
      * -if the user inputs an item that is already in the list, increment that
-     *item's value
+     * item's value
      * -once changes are made, rewrite new values for items in text file
      *
      */
@@ -178,6 +178,7 @@ public class MVCPlanner {
 	/*Name of Function: subtractChecklistItem;
      * 
      * This function will:
+     * -trigger if the user selects the remove radio button
      * -allow the user to select an item that they'd like to remove/decrememnt 
      * -once changes are made, rewrite new values for items in text file
      *

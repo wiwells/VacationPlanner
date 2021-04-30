@@ -1,3 +1,11 @@
+//Authors:	name				GitHub usr
+//			William Wells		wiwells
+//			Samuel Pilato		sampleauto
+//			Jacob Forney		jakexclone
+//			Ravinder Chaupain	vnm303
+//			Jasmine Beale		jnbeale
+//Class: Application Programming 3443
+//Section: 001
 package application;
 
 import java.io.IOException;

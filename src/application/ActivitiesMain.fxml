@@ -9,57 +9,93 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="750.0" maxWidth="750.0" minHeight="750.0" minWidth="750.0" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivitiesController">
+<AnchorPane fx:id="activitiesBgImg" maxHeight="750.0" maxWidth="750.0" minHeight="750.0" minWidth="750.0" prefHeight="750.0" prefWidth="750.0" style="-fx-background-color: #C4C3D0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ActivitiesController">
    <children>
-      <Text layoutX="23.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a category " wrappingWidth="231.0">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Text>
-      <ImageView fx:id="environment1" fitHeight="290.0" fitWidth="324.0" layoutX="405.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="border" arcHeight="5.0" arcWidth="5.0" fill="#555454" height="307.0" layoutX="361.0" layoutY="155.0" stroke="BLACK" strokeType="INSIDE" width="342.0" />
+      <Rectangle fx:id="imgBorder" arcHeight="5.0" arcWidth="5.0" fill="#555454" height="164.0" layoutX="21.0" layoutY="209.0" stroke="BLACK" strokeType="INSIDE" width="220.0" />
+      <ImageView fx:id="categoryImg" fitHeight="242.0" fitWidth="313.0" layoutX="31.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#9cc0e7" height="52.0" layoutX="365.0" layoutY="81.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="313.0" />
+      <ImageView fx:id="textBubble" fitHeight="150.0" fitWidth="200.0" layoutX="402.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@vector-indoor-location-background.jpg" />
+            <Image url="@chatbubble.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="environment_select" layoutX="23.0" layoutY="64.0" onAction="#update" prefHeight="25.0" prefWidth="150.0">
+      <ImageView fx:id="parrot" fitHeight="116.0" fitWidth="150.0" layoutX="585.0" layoutY="576.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@parrot.png" />
+         </image>
+         </ImageView>
+      <Text layoutX="23.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Category " wrappingWidth="231.0">
+         <font>
+            <Font name="Bodoni MT" size="20.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="categorySelect" layoutX="23.0" layoutY="64.0" onAction="#updateUI" prefHeight="25.0" prefWidth="150.0" promptText="Select a category" style="-fx-background-color: #9CC0E7;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ComboBox>
-      <Label fx:id="comment1" layoutX="10.0" layoutY="121.0" prefHeight="73.0" prefWidth="256.0">
+      <Label fx:id="comment" layoutX="418.0" layoutY="532.0" prefHeight="127.0" prefWidth="168.0">
          <font>
-            <Font size="15.0" />
+            <Font size="13.0" />
          </font>
       </Label>
-      <Button fx:id="homebtn" layoutX="23.0" layoutY="601.0" mnemonicParsing="false" onAction="#home" prefHeight="67.0" prefWidth="150.0" style="-fx-background-color: orange;" text="Home">
+      <Button fx:id="homebtn" layoutX="31.0" layoutY="625.0" mnemonicParsing="false" onAction="#returnToMain" prefHeight="67.0" prefWidth="150.0" style="-fx-background-color: FEDE3A;" text="Home">
          <font>
             <Font name="Bodoni MT Black" size="30.0" />
-         </font></Button>
-      <Button fx:id="savbtn" layoutX="567.0" layoutY="601.0" mnemonicParsing="false" onAction="#save" prefHeight="67.0" prefWidth="150.0" style="-fx-background-color: yellow;" text="Save" textFill="#0a0909">
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Text fx:id="actTitle" layoutX="23.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Activity" wrappingWidth="193.0">
          <font>
-            <Font name="Bodoni MT Black" size="32.0" />
-         </font></Button>
-      <Text layoutX="26.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select or Enter Custom Activity" wrappingWidth="401.0">
-         <font>
-            <Font size="19.0" />
+            <Font name="Bodoni MT" size="20.0" />
          </font>
       </Text>
-      <TextArea layoutX="23.0" layoutY="464.0" prefHeight="25.0" prefWidth="150.0" />
-      <ComboBox fx:id="activity_select" layoutX="23.0" layoutY="326.0" prefWidth="150.0" promptText="sports" />
-      <ComboBox layoutX="250.0" layoutY="326.0" prefWidth="150.0" promptText="dining" />
-      <ComboBox layoutX="250.0" layoutY="394.0" prefWidth="150.0" promptText="relaxation" />
-      <ComboBox layoutX="23.0" layoutY="394.0" prefWidth="150.0" promptText="sight seeing" />
-      <Label layoutX="23.0" layoutY="443.0" prefHeight="21.0" prefWidth="150.0" text="Custom">
+      <TextArea fx:id="customAct" layoutX="23.0" layoutY="143.0" onMouseClicked="#updateUI" prefHeight="25.0" prefWidth="150.0" promptText="enter here">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextArea>
+      <ComboBox fx:id="activitySelect" layoutX="23.0" layoutY="144.0" prefWidth="150.0" promptText="Select an Activity" style="-fx-background-color: #9CC0E7;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
+      <Button fx:id="add" layoutX="197.0" layoutY="144.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: FEDE3A;" text="Add">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="clear" layoutX="254.0" layoutY="144.0" mnemonicParsing="false" onAction="#clearFields" style="-fx-background-color: FEDE3A;" text="Clear">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ListView fx:id="activityList" layoutX="395.0" layoutY="186.0" prefHeight="242.0" prefWidth="275.0" style="-fx-background-color: #e0e0e0;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></ListView>
+      <Label layoutX="433.0" layoutY="90.0" text="Activity List">
          <font>
-            <Font size="15.0" />
+            <Font name="Bodoni MT Black" size="29.0" />
          </font>
       </Label>
-      <Button fx:id="add4" layoutX="413.0" layoutY="394.0" mnemonicParsing="false" onAction="#save" text="Add" />
-      <Button fx:id="add2" layoutX="413.0" layoutY="326.0" mnemonicParsing="false" onAction="#save" text="Add" />
-      <Button fx:id="add3" layoutX="188.0" layoutY="394.0" mnemonicParsing="false" onAction="#save" text="Add" />
-      <Button fx:id="add1" layoutX="188.0" layoutY="326.0" mnemonicParsing="false" onAction="#save" text="Add" />
-      <Button fx:id="add5" layoutX="183.0" layoutY="464.0" mnemonicParsing="false" onAction="#save" text="Add" />
+      <ComboBox fx:id="activityRemove" layoutX="23.0" layoutY="454.0" prefWidth="150.0" promptText="Select an Activity" style="-fx-background-color: #9CC0E7;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
+      <Text fx:id="actTitle1" layoutX="23.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remove Activity" wrappingWidth="193.0">
+         <font>
+            <Font name="Bodoni MT" size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="remove" layoutX="187.0" layoutY="454.0" mnemonicParsing="false" onAction="#remove" style="-fx-background-color: FEDE3A;" text="Remove">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="addMsg" layoutX="23.0" layoutY="174.0" prefHeight="25.0" prefWidth="231.0" />
+      <Label fx:id="delMsg" layoutX="28.0" layoutY="491.0" prefHeight="25.0" prefWidth="206.0" />
+      <Label fx:id="source" layoutX="21.0" layoutY="375.0" prefHeight="17.0" prefWidth="254.0">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Label>
    </children>
-   <cursor>
-      <Cursor fx:constant="HAND" />
-   </cursor>
 </AnchorPane>

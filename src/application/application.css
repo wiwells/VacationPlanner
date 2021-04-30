@@ -43,3 +43,31 @@
 	-fx-background-image:url("https://static.vecteezy.com/system/resources/previews/000/438/151/non_2x/indoor-location-background-vector.jpg");
 	-fx-background-size: 100% 100%;
 }
+
+/* location panel background color */
+#location{
+	-fx-background-color:yellow;	
+}
+
+
+/* checklist images */
+#checklist{
+	-fx-background-color:lightblue;
+}
+#Todocircle{
+	-fx-stroke: green;
+	-fx-fill: radial-gradient(center 50% 50%, radius 60%, red, orange, yellow, green, blue, purple);
+	/*-fx-fill: image-pattern("Todolist.jpg");*/
+}
+
+/* Location Panel background */
+#location{
+	-fx-background-image:url("l.png");
+	-fx-background-size:100% 100%;
+}
+
+/*images for activities panel*/
+#activitiesBgImg{
+	-fx-background-image:url("https://wallpaperaccess.com/full/2312673.jpg");
+	-fx-background-size: 100% 100%;
+}

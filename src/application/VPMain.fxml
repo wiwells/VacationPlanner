@@ -66,7 +66,7 @@
                   <Image url="@TodolistStickMan.jpg" />
                </image>
             </ImageView>
-            <TextField fx:id="Mheader" alignment="TOP_CENTER" editable="false" layoutX="41.0" layoutY="285.0" prefHeight="90.0" prefWidth="669.0" stylesheets="@application.css" text="Vocation Planner">
+            <TextField fx:id="Mheader" alignment="TOP_CENTER" editable="false" layoutX="41.0" layoutY="285.0" prefHeight="90.0" prefWidth="669.0" stylesheets="@application.css" text="Vacation Planner">
                <font>
                   <Font name="Magneto Bold" size="32.0" />
                </font>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="checklist" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ChecklistController">
+   <children>
+      <Button fx:id="homebutton" layoutX="46.0" layoutY="620.0" mnemonicParsing="false" onAction="#home" prefHeight="88.0" prefWidth="228.0" text="Home">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ListView fx:id="Checklist" layoutX="366.0" layoutY="203.0" prefHeight="345.0" prefWidth="345.0" />
+      <Button fx:id="submitbutton" layoutX="424.0" layoutY="620.0" mnemonicParsing="false" onAction="#submit" prefHeight="88.0" prefWidth="228.0" text="Submit">
+         <font>
+            <Font name="Arial Black" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label layoutX="62.0" layoutY="318.0" prefHeight="25.0" prefWidth="144.0" text="Item Name" />
+      <TextField fx:id="itemfield" layoutX="62.0" layoutY="343.0" />
+      <TextField fx:id="qfield" layoutX="62.0" layoutY="449.0" />
+      <Label layoutX="62.0" layoutY="432.0" prefHeight="17.0" prefWidth="105.0" text="Item Quantity" />
+      <RadioButton fx:id="rbadd" layoutX="62.0" layoutY="262.0" mnemonicParsing="false" selected="true" text="Add">
+         <toggleGroup>
+            <ToggleGroup fx:id="rbgroup" />
+         </toggleGroup>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </RadioButton>
+      <RadioButton fx:id="rbremove" layoutX="137.0" layoutY="262.0" mnemonicParsing="false" text="Remove" toggleGroup="$rbgroup">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></RadioButton>
+      <Label fx:id="emptyLabel" alignment="CENTER" layoutX="464.0" layoutY="186.0" prefHeight="17.0" prefWidth="149.0" textAlignment="CENTER" />
+      <Label alignment="CENTER" layoutX="221.0" layoutY="60.0" prefHeight="88.0" prefWidth="308.0" text="Checklist">
+         <font>
+            <Font name="Arial Black" size="35.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="280.0" fitWidth="275.0" layoutX="14.0" layoutY="-21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Todolist.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

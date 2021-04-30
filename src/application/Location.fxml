@@ -1,0 +1,103 @@
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="location" prefHeight="750.0" prefWidth="750.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LocationController">
+   <children>
+      <Label layoutX="130.0" layoutY="14.0" prefHeight="38.0" prefWidth="441.0" text="Pick Your Destination Or Enter Below" textFill="#ed700e">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="user1" layoutX="61.0" layoutY="412.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></TextField>
+      <TextField fx:id="user" layoutX="50.0" layoutY="142.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></TextField>
+      <Label layoutX="78.0" layoutY="375.0" text="Enter City" textFill="LIGHTBLUE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="72.0" layoutY="104.0" text="Enter Country" textFill="LIGHTBLUE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="364.0" layoutY="375.0" text="Select City" textFill="ORANGE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="353.0" layoutY="104.0" text="Select Country" textFill="ORANGE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="clear" layoutX="61.0" layoutY="642.0" mnemonicParsing="false" onAction="#clearAllField" prefHeight="39.0" prefWidth="104.0" text="Clear">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="goHomeButton" layoutX="601.0" layoutY="52.0" mnemonicParsing="false" onAction="#goHome" text="Home">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="addbtn" layoutX="72.0" layoutY="507.0" mnemonicParsing="false" onAction="#add" prefHeight="39.0" prefWidth="59.0" text="Add">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ComboBox fx:id="country" layoutX="337.0" layoutY="142.0" onAction="#update" prefHeight="31.0" prefWidth="179.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
+      <ComboBox fx:id="city" layoutX="346.0" layoutY="412.0" onAction="#update" prefHeight="31.0" prefWidth="179.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
+      <Button fx:id="remove" layoutX="353.0" layoutY="642.0" mnemonicParsing="false" onAction="#remove" text="Remove">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="Imageview" fitHeight="300.0" fitWidth="220.0" layoutX="523.0" layoutY="142.0" onDragDetected="#update" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@../../../../OneDrive/Desktop/default.png" />
+         </image>
+      </ImageView>
+      <ListView fx:id="list" layoutX="539.0" layoutY="450.0" prefHeight="287.0" prefWidth="200.0" />
+      <Label layoutX="601.0" layoutY="414.0" prefHeight="27.0" prefWidth="124.0" text="View List " textFill="#d5e80d">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+</AnchorPane>

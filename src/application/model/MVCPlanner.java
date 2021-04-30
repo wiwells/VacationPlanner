@@ -86,6 +86,7 @@ public class MVCPlanner {
 				return "Item not found.";
 		return "Success!";
 	}
+	//clear all checklist items from the file
 	public static void clearFile(String n) throws IOException {
 		FileWriter clear = new FileWriter(n,false);
 		PrintWriter clearer = new PrintWriter(clear,false);
@@ -95,8 +96,8 @@ public class MVCPlanner {
 	/*Name of Function: readChecklistFile;
      * 
      * This function will:
-     *-read the text file containing the items added to the checklist
-     *-should read both the item name and its value returning an arraylist
+     * -read the text file containing the items added to the checklist
+     * -should read both the item name and its value returning an arraylist
      *with all values
      * 
      * 
@@ -304,14 +305,15 @@ public class MVCPlanner {
         }
         //add value to file and listview
         if (checkListforItem(arrlist, value) == false && customAct.isVisible() == false) {
+		//write to first line if file is empty
         	if(file.length()==0)
         	{
         	  fileWriter.write(value);
         	}
+		//else write a newline than add value
         	else
         	{
-
-             fileWriter.write("\n"+value);
+                  fileWriter.write("\n"+value);
         	}
             arrlist.add(value);
             activityList.getItems().add(value);
@@ -478,7 +480,7 @@ public class MVCPlanner {
     }
 	
 	/*******************  Locations  *********************/
-    //Default Image
+	//Default Image
     static Image def = new Image(new File("src/application/default.png").toURI().toString());
     
 	//List of countries and cities
@@ -492,8 +494,6 @@ public class MVCPlanner {
      * -read country and city values (if any) from the Location.txt file
      * -set the country and city combo boxes
      * -create a list view of the country and cities
-     * 
-     * 
      * 
      * 
      */
@@ -531,7 +531,6 @@ public class MVCPlanner {
      * -if the city/country already exist in the text file don't add it
      * -displays a different image based on the country/city that is selected from the combobox
      * 
-     * 
      */
 	static public void addLocation(TextField user, TextField user1, ComboBox<String> country, ComboBox<String> city,
 									ListView<String> list, ImageView Imageview) throws IOException {
@@ -563,7 +562,7 @@ public class MVCPlanner {
 				bufReader.close();
 				String comb = usr+","+usr1;
 				String val = value+","+value1;
-				
+				//if the country is already in the file
 				if(!arrlist.contains(value) && value!= "Country")
 				{
 					arrlist.add(value);
@@ -580,6 +579,7 @@ public class MVCPlanner {
 					}
 				
 				}
+		       		//if the city is already in the file
 				if(!arrlist.contains(value1) && value1!="City")
 				{
 					arrlist.add(value1);
@@ -617,22 +617,21 @@ public class MVCPlanner {
 	/*Name of Function: removeLocation;
      * 
      * This function will:
-     *-take a user input or selection from the city/country combobox and add it to the Location.txt and List View
-     *-if the city/country does not exist in the text file return an error message
-     *-this will remove the selected/enter country/city from both the text file and the list view
-     * 
+     * -take a user input or selection from the city/country combobox and add it to the Location.txt and List View
+     * -if the city/country does not exist in the text file return an error message
+     * -this will remove the selected/enter country/city from both the text file and the list view
      * 
      */
 	//Remove Location
 	static public void removeLocation(TextField user, TextField user1, ComboBox<String> country, ComboBox<String> city,
-			ListView<String> list, ImageView Imageview) throws IOException{
-		File file = new File("Location.txt");
+	   ListView<String> list, ImageView Imageview) throws IOException{
+	   File file = new File("Location.txt");
   	   ArrayList<String> arrlist = new ArrayList<String>();
   	   String value = "";
   	   String value1 = "";
   	   String combined = "";
   	   String combined1 = "";
-  	 
+  	   //get the user values from the country and city text boxes
   	   String usr = user.getText().trim();
   	   String usr1 = user1.getText().trim();
   	   FileInputStream input = new FileInputStream(file);
@@ -720,8 +719,8 @@ public class MVCPlanner {
      /*Name of Function: initTransportation;
      * 
      * This function will:
-     *-set the values for the various combo boxes
-     *-display items from the text file into the getTherelist listview
+     * -set the values for the various combo boxes
+     * -display items from the text file into the getTherelist listview
      * 
      */
     static public void initTransportation(ComboBox<String> initialTravel, ComboBox<String> meansofTravel, ListView<String> getTherelist) {
@@ -731,6 +730,7 @@ public class MVCPlanner {
     	initialTravel.setValue("Select Transportation");
     	meansofTravel.setValue("Select Transportation");
     	try {
+		//read the initail text file
     		FileInputStream input = new FileInputStream("initialTransportation.txt");
     		BufferedReader buffer = new BufferedReader(new InputStreamReader(input));
     		String line = buffer.readLine();
@@ -753,7 +753,7 @@ public class MVCPlanner {
     /*Name of Function: submitTransit;
      * 
      * This function will:
-     *-ask the user to select a method of transit and display information in the infoView based 
+     * -ask the user to select a method of transit and display information in the infoView based 
      *on the method the user selected
      * 
      */
@@ -995,7 +995,7 @@ public class MVCPlanner {
                 e.printStackTrace();
             }
         }
-	    //if Taxi is selected
+	//if Taxi is selected
         else if (value2 == "Taxi") {
      	   ArrayList<String> ar = new ArrayList<String>();
      	   infoView.getItems().clear();
@@ -1108,7 +1108,7 @@ public class MVCPlanner {
     static public void submitCost(TextField costText, ListView<String> moneyList) {
     	Alert c = new Alert(AlertType.ERROR);
     	String cost = costText.getText();
-    	
+    	//if user does not enter a transportation cost
     	if(costText.getLength() == 0){
     		c.setHeaderText("You did not fill in how much your transportation will cost.");
         	costText.clear();

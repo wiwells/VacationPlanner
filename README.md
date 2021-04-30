@@ -69,3 +69,7 @@ Authors:
       Removal of these activites also works.
       The application will record these activities the next time the user opens the application.
       
+# Utilized Application
+      -Eclipse IDE for Jave Developers 2020-12
+                       -Utilizing Java jre 1.8.0_281
+      -For FXML files, utilize JavaFX SceneBuilder 2.0

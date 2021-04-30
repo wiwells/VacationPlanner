@@ -295,6 +295,11 @@ public class MVCPlanner {
         customAct.clear();
         ObservableList < String > fullList = FXCollections.observableList(arrlist);
         activityRemove.setItems(fullList);
+	FileWriter writer = new FileWriter(file);
+        for (String str: arrlist) {
+            writer.write(str + System.lineSeparator());
+        }
+        writer.close();
 	}
 	
 	
@@ -438,7 +443,17 @@ public class MVCPlanner {
 			"USA","Canada","Nepal","Australia","Germany","France","Spain","Portugal","UAE","NewZealand");
     static ObservableList<String> cat = FXCollections.observableArrayList("Delhi","CapeTown","London","NewYork", 
     		"Toronto","Kathmandu","Sydney","Berlin","Paris","Madrid","Lisbon","Dubai","Wellington");
-	
+	/*Name of Function: initLocation;
+     * 
+     * This function will:
+     *-read country and city values (if any) from the Location.txt file
+     * -set the country and city combo boxes
+     * -create a list view of the country and cities
+     * 
+     * 
+     * 
+     * 
+     */
 	static public void initLocation(ImageView imageView, ComboBox<String> country, ComboBox<String> city, ListView<String> list){
 		File file = new File("Location.txt");
   	    ArrayList<String> arrlist = new ArrayList<String>();
@@ -466,8 +481,17 @@ public class MVCPlanner {
     	  	e.printStackTrace();
     	 }
 	}
-	
-	//add Location
+	/*Name of Function: addLocation;
+     * 
+     * This function will:
+     *-take a user input or selection from the city/country combobox and add it to the Location.txt and List View
+     *-if the city/country already exist in the text file don't add it
+     *-displays a different image based on the country/city that is selected from the combobox
+     * 
+     * 
+     * 
+     * 
+     */
 	static public void addLocation(TextField user, TextField user1, ComboBox<String> country, ComboBox<String> city,
 									ListView<String> list, ImageView Imageview) throws IOException {
 		File file = new File("Location.txt");
@@ -549,7 +573,17 @@ public class MVCPlanner {
 			}
 	}
 	
-	
+	/*Name of Function: removeLocation;
+     * 
+     * This function will:
+     *-take a user input or selection from the city/country combobox and add it to the Location.txt and List View
+     *-if the city/country does not exist in the text file return an error message
+     *-this will remove the selected/enter country/city from both the text file and the list view
+     * 
+     * 
+     * 
+     * 
+     */
 	//Remove Location
 	static public void removeLocation(TextField user, TextField user1, ComboBox<String> country, ComboBox<String> city,
 			ListView<String> list, ImageView Imageview) throws IOException{
@@ -644,7 +678,16 @@ public class MVCPlanner {
     				"Bus",
     				"Ridesharing"
     				);
-	
+     /*Name of Function: initTransportation;
+     * 
+     * This function will:
+     *-set the values for the various combo boxes
+     *-display items from the text file into the getTherelist listview
+     * 
+     * 
+     * 
+     * 
+     */
     static public void initTransportation(ComboBox<String> initialTravel, ComboBox<String> meansofTravel, ListView<String> getTherelist) {
     	ArrayList<String> items = new ArrayList<String>();
     	initialTravel.setItems(initial);
@@ -671,7 +714,17 @@ public class MVCPlanner {
     		e.printStackTrace();
     	}
     }
-    
+    /*Name of Function: submitTransit;
+     * 
+     * This function will:
+     *-ask the user to select a method of transit and display information in the infoView based 
+     *on the method the user selected
+     *
+     * 
+     * 
+     * 
+     * 
+     */
     static public void submitTransit(ComboBox<String> initialTravel, ListView<String> getTherelist, 
     								ListView<String> infoView) throws IOException, FileNotFoundException{
        
@@ -832,7 +885,17 @@ public class MVCPlanner {
             }
         }
     }
-    
+    /*Name of Function: submitVechicle;
+     * 
+     * This function will:
+     *-give the user a selection of vechicles based on their transportation method selected
+     *-it will display options for these methods as needed
+     *-add vechicle information to the text file
+     * 
+     * 
+     * 
+     * 
+     */
     //SubmitButton2 Personal Transportation vehicle
     static public void submitVehicle(ComboBox<String> meansofTravel, ListView<String> meansList, 
     								ListView<String> infoView) throws IOException, FileNotFoundException {
@@ -1019,7 +1082,16 @@ public class MVCPlanner {
     	costText.clear();
     	}
     }
-    
+    /*Name of Function: clearTransportation;
+     * 
+     * This function will:
+     *-clear all fields/selections that the user may have chosen. Should also clear information listview
+     *
+     * 
+     * 
+     * 
+     * 
+     */
     //Clearing Files
     static public void clearTransportation(ListView<String> getTherelist, ListView<String> moneyList, 
     									   ListView<String> meansList, ListView<String> infoView) throws IOException, FileNotFoundException {

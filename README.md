@@ -3,7 +3,7 @@ Group Project for 3443 Application Programming course at the University of Texas
 Authors:
       William Wells     wiwells
       Jasmine Beale     jnbeale
-      Rainder Chaupain  vnm303
+      Ravinder Chaupain  vnm303
       Samuel Pilato     sampleauto
       Jacob Forney      jakexclone
       

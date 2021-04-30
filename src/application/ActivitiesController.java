@@ -235,6 +235,11 @@ public class ActivitiesController implements Initializable {
         customAct.clear();
         ObservableList < String > fullList = FXCollections.observableList(arrlist);
         activityRemove.setItems(fullList);
+        FileWriter writer = new FileWriter(file);
+        for (String str: arrlist) {
+            writer.write(str + System.lineSeparator());
+        }
+        writer.close();
     }
     public boolean checkListforItem(ArrayList < String > arrlist, String value) throws IOException {
         Alert a = new Alert(AlertType.NONE);

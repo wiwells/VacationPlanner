@@ -100,8 +100,6 @@ public class MVCPlanner {
      *with all values
      * 
      * 
-     * 
-     * 
      */
 	public static ArrayList<String> readChecklistFile() throws FileNotFoundException
 	{
@@ -124,8 +122,8 @@ public class MVCPlanner {
 	/*Name of Function: writeChecklistFile;
      * 
      * This function will:
-     *-write the values that the user inputs to the check list file if items exist
-     *-if the quantity is 0 or negative the item will not be added to the file
+     * -write the values that the user inputs to the check list file if items exist
+     * -if the quantity is 0 or negative the item will not be added to the file
      * 
      */
 	public static void writeChecklistFile(ArrayList<String> list,ArrayList<String> listnums) throws IOException
@@ -149,8 +147,8 @@ public class MVCPlanner {
 	/*Name of Function: addChecklistItem;
      * 
      * This function will:
-     *-check which items the user selects 
-     *-if the user inputs an item that is already in the list, increment that
+     * -check which items the user selects 
+     * -if the user inputs an item that is already in the list, increment that
      *item's value
      * -once changes are made, rewrite new values for items in text file
      *
@@ -179,8 +177,8 @@ public class MVCPlanner {
 	/*Name of Function: subtractChecklistItem;
      * 
      * This function will:
-     *-allow the user to select an item that they'd like to remove/decrememnt 
-     *-once changes are made, rewrite new values for items in text file
+     * -allow the user to select an item that they'd like to remove/decrememnt 
+     * -once changes are made, rewrite new values for items in text file
      *
      * 
      */
@@ -491,7 +489,7 @@ public class MVCPlanner {
 	/*Name of Function: initLocation;
      * 
      * This function will:
-     *-read country and city values (if any) from the Location.txt file
+     * -read country and city values (if any) from the Location.txt file
      * -set the country and city combo boxes
      * -create a list view of the country and cities
      * 
@@ -529,11 +527,9 @@ public class MVCPlanner {
 	/*Name of Function: addLocation;
      * 
      * This function will:
-     *-take a user input or selection from the city/country combobox and add it to the Location.txt and List View
-     *-if the city/country already exist in the text file don't add it
-     *-displays a different image based on the country/city that is selected from the combobox
-     * 
-     * 
+     * -take a user input or selection from the city/country combobox and add it to the Location.txt and List View
+     * -if the city/country already exist in the text file don't add it
+     * -displays a different image based on the country/city that is selected from the combobox
      * 
      * 
      */
@@ -727,7 +723,6 @@ public class MVCPlanner {
      *-set the values for the various combo boxes
      *-display items from the text file into the getTherelist listview
      * 
-     * 
      */
     static public void initTransportation(ComboBox<String> initialTravel, ComboBox<String> meansofTravel, ListView<String> getTherelist) {
     	ArrayList<String> items = new ArrayList<String>();
@@ -801,6 +796,7 @@ public class MVCPlanner {
  		} catch (IOException e) {
  			e.printStackTrace();
  		}
+	 //if Airplane is selected
         if (value == "Airplane") {
      	   ArrayList<String> ar = new ArrayList<String>();
      	   infoView.getItems().clear();
@@ -825,6 +821,7 @@ public class MVCPlanner {
                 e.printStackTrace();
             }
         }
+	//if train is selected
         else if (value == "Train") {
      	   ArrayList<String> ar = new ArrayList<String>();
      	   infoView.getItems().clear();
@@ -849,6 +846,7 @@ public class MVCPlanner {
                 e.printStackTrace();
             }
         }
+	 //if bus is selected
         else if (value == "Bus") {
      	   ArrayList<String> ar = new ArrayList<String>();
      	   infoView.getItems().clear();
@@ -873,6 +871,7 @@ public class MVCPlanner {
                 e.printStackTrace();
             }
         }
+	 //if ship is selected
         else if (value == "Ship") {
      	   ArrayList<String> ar = new ArrayList<String>();
      	   infoView.getItems().clear();
@@ -927,10 +926,10 @@ public class MVCPlanner {
      *attached to: SubmitButton2
      *
      * This function will:
-     *-give the user a selection of personal transporation 
+     * -give the user a selection of personal transporation 
      * vechicles based on their transportation method selected
-     *-it will display options for these methods as needed
-     *-add vechicle information to the text file
+     * -it will display options for these methods as needed
+     * -add vechicle information to the text file
      * 
      */
     static public void submitVehicle(ComboBox<String> meansofTravel, ListView<String> meansList, 
@@ -996,6 +995,7 @@ public class MVCPlanner {
                 e.printStackTrace();
             }
         }
+	    //if Taxi is selected
         else if (value2 == "Taxi") {
      	   ArrayList<String> ar = new ArrayList<String>();
      	   infoView.getItems().clear();
@@ -1020,6 +1020,7 @@ public class MVCPlanner {
                 e.printStackTrace();
             }
         }
+	//if Train is selected
         else if (value2 == "Train") {
      	   ArrayList<String> ar = new ArrayList<String>();
      	   infoView.getItems().clear();
@@ -1044,6 +1045,7 @@ public class MVCPlanner {
                 e.printStackTrace();
             }
         }
+	//if Bus is selected
         else if (value2 == "Bus") {
      	   ArrayList<String> ar = new ArrayList<String>();
      	   infoView.getItems().clear();
@@ -1068,6 +1070,7 @@ public class MVCPlanner {
                 e.printStackTrace();
             }
         }
+	//if Ridesharing is selected
         else if (value2 == "Ridesharing") {
      	   ArrayList<String> ar = new ArrayList<String>();
      	   infoView.getItems().clear();
@@ -1098,8 +1101,8 @@ public class MVCPlanner {
      * 
      *attached to Submit Button3
      * This function will:
-     *-this function will take a number from the user that represents the overall cost of travel
-     *-if the button is selected without entering a value it should display an error message
+     * -this function will take a number from the user that represents the overall cost of travel
+     * -if the button is selected without entering a value it should display an error message
      * 
      */
     static public void submitCost(TextField costText, ListView<String> moneyList) {
@@ -1127,7 +1130,7 @@ public class MVCPlanner {
     /*Name of Function: clearTransportation;
      * 
      * This function will:
-     *-clear all fields/selections that the user may have chosen. Should also clear information listview
+     * -clear all fields/selections that the user may have chosen. Should also clear information listview
      * 
      */
     static public void clearTransportation(ListView<String> getTherelist, ListView<String> moneyList, 

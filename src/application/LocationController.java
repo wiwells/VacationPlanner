@@ -102,6 +102,7 @@ public class LocationController {
         @FXML
         void remove(ActionEvent event) throws IOException {
         	MVCPlanner.removeLocation(user, user1, country, city, list, Imageview);
+		clearAllField(event);
         }
 
         @FXML

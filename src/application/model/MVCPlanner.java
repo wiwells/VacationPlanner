@@ -27,7 +27,17 @@ import javafx.scene.text.Text;
 
 public class MVCPlanner {
 	/***************  Checklist MVC  ******************/
-	
+	/*Name of Function: checklistsumbit
+     * 
+     * This function will:
+     *-allow the user to add an item along with a quantity to their checklist
+     *-check if the checklist file exist
+     *-check for an item value and quantity value and return if either/both are
+     *not given by the user
+     * 
+     * 
+     * 
+     */
 	public static String checklistsubmit(boolean add,String item, String q)
 	{
 		int n = 0;
@@ -82,6 +92,17 @@ public class MVCPlanner {
 		clearer.flush();
 		clearer.close();
 	}
+	/*Name of Function: readChecklistFile;
+     * 
+     * This function will:
+     *-read the text file containing the items added to the checklist
+     *-should read both the item name and its value returning an arraylist
+     *with all values
+     * 
+     * 
+     * 
+     * 
+     */
 	public static ArrayList<String> readChecklistFile() throws FileNotFoundException
 	{
 		String current;
@@ -100,6 +121,13 @@ public class MVCPlanner {
 		}
 		return list;
 	}
+	/*Name of Function: writeChecklistFile;
+     * 
+     * This function will:
+     *-write the values that the user inputs to the check list file if items exist
+     *-if the quantity is 0 or negative the item will not be added to the file
+     * 
+     */
 	public static void writeChecklistFile(ArrayList<String> list,ArrayList<String> listnums) throws IOException
 	{
 		//Function to rewrite to file with updated lists
@@ -118,6 +146,15 @@ public class MVCPlanner {
 		}
 		bw.close();
 	}
+	/*Name of Function: addChecklistItem;
+     * 
+     * This function will:
+     *-check which items the user selects 
+     *-if the user inputs an item that is already in the list, increment that
+     *item's value
+     * -once changes are made, rewrite new values for items in text file
+     *
+     */
 	public static void addChecklistItem(ArrayList<String> list,ArrayList<String> listnums, String n, int m) {
 		//Give function to read both arraylists, print a message, and update inventory.txt
 		int temp;
@@ -139,6 +176,14 @@ public class MVCPlanner {
 			e.printStackTrace();
 		}
 	}
+	/*Name of Function: subtractChecklistItem;
+     * 
+     * This function will:
+     *-allow the user to select an item that they'd like to remove/decrememnt 
+     *-once changes are made, rewrite new values for items in text file
+     *
+     * 
+     */
 	public static void subtractChecklistItem(ArrayList<String> list,ArrayList<String> listnums,String n, int m)
 	{
 		int temp = Integer.parseInt(listnums.get(list.indexOf(n)));
@@ -581,8 +626,6 @@ public class MVCPlanner {
      *-this will remove the selected/enter country/city from both the text file and the list view
      * 
      * 
-     * 
-     * 
      */
 	//Remove Location
 	static public void removeLocation(TextField user, TextField user1, ComboBox<String> country, ComboBox<String> city,
@@ -685,8 +728,6 @@ public class MVCPlanner {
      *-display items from the text file into the getTherelist listview
      * 
      * 
-     * 
-     * 
      */
     static public void initTransportation(ComboBox<String> initialTravel, ComboBox<String> meansofTravel, ListView<String> getTherelist) {
     	ArrayList<String> items = new ArrayList<String>();
@@ -719,10 +760,6 @@ public class MVCPlanner {
      * This function will:
      *-ask the user to select a method of transit and display information in the infoView based 
      *on the method the user selected
-     *
-     * 
-     * 
-     * 
      * 
      */
     static public void submitTransit(ComboBox<String> initialTravel, ListView<String> getTherelist, 
@@ -887,16 +924,15 @@ public class MVCPlanner {
     }
     /*Name of Function: submitVechicle;
      * 
+     *attached to: SubmitButton2
+     *
      * This function will:
-     *-give the user a selection of vechicles based on their transportation method selected
+     *-give the user a selection of personal transporation 
+     * vechicles based on their transportation method selected
      *-it will display options for these methods as needed
      *-add vechicle information to the text file
      * 
-     * 
-     * 
-     * 
      */
-    //SubmitButton2 Personal Transportation vehicle
     static public void submitVehicle(ComboBox<String> meansofTravel, ListView<String> meansList, 
     								ListView<String> infoView) throws IOException, FileNotFoundException {
     	
@@ -1058,8 +1094,14 @@ public class MVCPlanner {
         }
     }
 	
-    
-    //Submit Button3 Cost
+    /*Name of Function: submitTransit;
+     * 
+     *attached to Submit Button3
+     * This function will:
+     *-this function will take a number from the user that represents the overall cost of travel
+     *-if the button is selected without entering a value it should display an error message
+     * 
+     */
     static public void submitCost(TextField costText, ListView<String> moneyList) {
     	Alert c = new Alert(AlertType.ERROR);
     	String cost = costText.getText();
@@ -1086,13 +1128,8 @@ public class MVCPlanner {
      * 
      * This function will:
      *-clear all fields/selections that the user may have chosen. Should also clear information listview
-     *
-     * 
-     * 
-     * 
      * 
      */
-    //Clearing Files
     static public void clearTransportation(ListView<String> getTherelist, ListView<String> moneyList, 
     									   ListView<String> meansList, ListView<String> infoView) throws IOException, FileNotFoundException {
     	Alert CLEAR = new Alert(AlertType.ERROR);
